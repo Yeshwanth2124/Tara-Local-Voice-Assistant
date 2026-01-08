@@ -14,6 +14,48 @@ TARA is a fully offline, privacy-first voice assistant that listens, thinks, spe
 - 🔐 **100% Offline**: No data leaves your machine.
 
 ---
+---
+
+## 🛠️ Technologies Used
+
+| Component            |        Tool / Framework             |
+|----------------------|-------------------------------------|
+| **Audio Recording**  | `sounddevice`, `wave` (Python)      |
+| **Transcription**    | `whisper.cpp` + `ggml-base.en.bin`  |
+| **LLM Inference**    | `LLaMA3` via `Ollama` (localhost API)|
+| **Backend**          | `Flask`, `asyncio`, `json`          |
+| **TTS**              | `Piper` (Docker) + Wyoming Protocol |
+| **Memory Storage**   | Local `memory.json` file            |
+| **API Testing**      | Postman, Browser                    |
+
+---
+
+## 🧩 Architecture Overview
+
+![archtara1](https://github.com/user-attachments/assets/27b45a43-6838-40f1-9dd0-1ecdc252e5cf)
+
+## WorkFlow
+
+1. 🎧 **`record_audio.py`** captures user audio as `output.wav`
+2. 🧠 **`whisper.cpp`** transcribes the audio → `output.txt`
+3. 🧩 **`assistant.py`** processes the text:
+   - If "clear memory" → clears `memory.json`
+   - Else → sends context + prompt to LLaMA3 via Ollama
+4. 🧠 Response is saved in memory (`memory.json`)
+5. 🔊 Reply is spoken via Piper TTS and played back
+6. 🌐 Optional: Interact via REST API
+
+---
+
+## 🌐 Flask API Endpoints
+
+| Method | Route         | Description                                   |
+|--------|---------------|---------------------------------------------- |
+| POST   | `/transcribe` | Runs full pipeline (record → respond → speak) |
+| POST   | `/ask`        | Accepts direct text input, responds & speaks  |
+| GET    | `/memory`     | Returns recent conversation history           |
+
+---
 
 ## 🛠️ Prerequisites
 
@@ -136,18 +178,6 @@ Once everything is set up:
     python app.py
     ```
 
----
-
-## 🔍 How It Works
-
-1.  **Listen**: `record_audio.py` captures your voice.
-2.  **Transcribe**: `whisper-cli.exe` converts audio to text (`output.txt`).
-3.  **Think**: `assistant.py` sends the text + conversation history (`memory.json`) to LLaMA3 via Ollama.
-4.  **Speak**: The response is sent to the running Docker container (Piper TTS), which generates audio.
-5.  **Remember**: The interaction is saved to `memory.json`.
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -167,10 +197,15 @@ Once everything is set up:
 └── README.md
 ```
 
----
+## 🤝 Contributions
+Contributions are welcome!
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Submit a pull request.
 
-## 📬 Contact
+## Author
 
-**Mudimala Yeshwanth Goud**
-*   Email: yeshwanth.mudimala@motivitylabs.com
-*   *Passionate about AI/ML, NLP, and intelligent systems.*
+**Yeshwanth Goud**
+
+*Data Scientist | Full Stack & ML Enthusiast*
