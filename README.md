@@ -12,8 +12,7 @@ TARA is a fully offline, privacy-first voice assistant that listens, thinks, spe
 - 🔊 **Text-to-Speech (TTS)**: High-quality, low-latency speech using Piper (running in Docker).
 - 🌐 **Flask API**: Web interface for interaction and memory management.
 - 🔐 **100% Offline**: No data leaves your machine.
-
----
+  
 ---
 
 ## 🛠️ Technologies Used
