@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+
+# Virtual Environment
+venv/
+.venv/
+
+# Environment Variables
+.env
+
+# Models and Large Files
+*.bin
+*.onnx
+*.onnx.json
+backend/models/
+backend/whisper.cpp/
+
+# Local database/memory
+backend/memory.json
+
+# Audio Outputs
+*.wav
+*.mp3
+backend/*.wav
+backend/*.txt
+
+# Node/React
+frontend/node_modules/
+frontend/build/
+frontend/.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Residual Directory (if delete failed)
+Tara/
